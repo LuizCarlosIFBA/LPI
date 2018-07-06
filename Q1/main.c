@@ -45,7 +45,7 @@ void CalcularMediaFinais(int n, int m, float nota[][n],float *mediaFinal,int *pe
 		}
     
         mediaFinal[j] = aux/10; 
-        printf(" %.1f \n",mediaFinal[j]);
+        //printf(" %.1f \n",mediaFinal[j]);
       }
 }
 
