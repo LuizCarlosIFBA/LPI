@@ -33,7 +33,7 @@ void CalcularMediaFinal(int n, int m, float nota[][n],float *mediaFinal,int *pes
    		//printf(" %.1f",nota[j][i]);
 		}    
         }
-        //printf("\n \n");
+       // printf("\n \n");
        //----------------------------------------------------------------------//
       
        //Cálculo da média
