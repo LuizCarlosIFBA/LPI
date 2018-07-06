@@ -3,7 +3,7 @@
 #include "stdlib.h"
 #include "time.h"
 
-void CalcularMediaFinal(int n, int m, float nota[][n],float *mediaFinal,int *peso){
+void CalcularMediaFinais(int n, int m, float nota[][n],float *mediaFinal,int *peso){
 	//Preenchendo o vetor peso 
 	int i,j; 
 	srand((unsigned)time(NULL));
@@ -33,7 +33,7 @@ void CalcularMediaFinal(int n, int m, float nota[][n],float *mediaFinal,int *pes
    		//printf(" %.1f",nota[j][i]);
 		}    
         }
-       // printf("\n \n");
+        //printf("\n \n");
        //----------------------------------------------------------------------//
       
        //Cálculo da média
@@ -59,7 +59,7 @@ void main(){
 	float nota[m][n];
 
     
-        CalcularMediaFinal(n,m,nota,mediaFinal,peso);
+        CalcularMediaFinais(n,m,nota,mediaFinal,peso);
         	
 }
 

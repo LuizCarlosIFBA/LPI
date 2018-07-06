@@ -41,11 +41,11 @@ void CalcularMediaFinais(int n, int m, float nota[][n],float *mediaFinal,int *pe
        
        for(j=0;j<m;j++){ 
  		for(i=0;i<n;i++){
-   			aux+=nota[j][i]; 
+   			aux+=nota[j][i]*peso[j]; 
 		}
     
         mediaFinal[j] = aux/10; 
-        //printf(" %.1f \n",mediaFinal[j]);
+        printf(" %.1f \n",mediaFinal[j]);
       }
 }
 
