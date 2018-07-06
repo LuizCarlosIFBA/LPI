@@ -2,8 +2,10 @@
 #include <math.h>
 #include "stdlib.h"
 #include "time.h"
+#include <string.h>
 
-void CalcularMediaFinais(int n, int m, float nota[][n],float *mediaFinal,int *peso){
+
+void AlunoDestaque(char *nome1, char *nome2,int n, int m, float nota[][n],float *mediaFinal,int *peso){
 	//Preenchendo o vetor peso 
 	int i,j; 
 	srand((unsigned)time(NULL));
@@ -45,8 +47,49 @@ void CalcularMediaFinais(int n, int m, float nota[][n],float *mediaFinal,int *pe
 		}
     
         mediaFinal[j] = aux/10; 
-        //printf(" %.1f \n",mediaFinal[j]);
+        printf(" %.1f \n",mediaFinal[j]);
       }
+
+     //-----------------------------------------------------------------------//
+     //lógica para aluno destaque
+     
+     /*
+     printf("Média não ordenada"); 
+     for(i=0;i<m;i++){ 	  
+          printf(" %.2f ",mediaFinal[i]);
+     }   
+     printf(" ");*/   
+   
+     for(i=0;i<m;i++){ 
+ 	 for(j=0;j<m;j++){
+   	 	aux = 0;
+		if(mediaFinal[i]<mediaFinal[j]){
+			aux = mediaFinal[j];
+                        mediaFinal[j] = mediaFinal[i];
+			mediaFinal[i] = aux;
+		}		
+	 }    
+     }
+     
+     int destaque = 0;
+     /*printf("\n Média ordenada"); 
+     for(i=0;i<m;i++){ 	  
+          //printf(" %.2f ",mediaFinal[i]);
+     }	
+     printf(" ");*/
+
+     
+     for(i=0;i<m;i++){ 
+ 	 for(j=0;j<m;j++){
+		if(nota[i][j]>=5 && mediaFinal[i]>7){
+			if(i==0){
+			    printf("O aluno destaque é %s",nome1[6]);
+			    destaque++;
+                        }else if(i==1){printf("O aluno destaque é %s",nome1[6]); destaque++;}	
+		}
+         }
+     }
+     printf(destaque == 0?"Turma não tem aluno Destaque\n":" ");		 
 }
 
 void main(){
@@ -58,8 +101,11 @@ void main(){
         float mediaFinal[m];
 	float nota[m][n];
 
-    
-        CalcularMediaFinais(n,m,nota,mediaFinal,peso);
-        	
+       
+	char nome1[6] = "João";
+	char nome2[6] = "Lucas";
+       
+        AlunoDestaque(nome1,nome2,n,m,nota,mediaFinal,peso);
 }
+
 
