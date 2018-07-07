@@ -3,9 +3,12 @@
 #include "stdlib.h"
 #include "time.h"
 #include <string.h>
-
-
-void AlunoDestaque(char *nome1, char *nome2,int n, int m, float nota[][n],float *mediaFinal,int *peso){
+  
+        struct nome{
+		char nome[4];
+        };	
+	  
+void AlunoDestaque(int n, int m, struct nome *nomes, float nota[][n],float *mediaFinal,int *peso){
 	//Preenchendo o vetor peso 
 	int i,j; 
 	srand((unsigned)time(NULL));
@@ -47,7 +50,7 @@ void AlunoDestaque(char *nome1, char *nome2,int n, int m, float nota[][n],float 
 		}
     
         mediaFinal[j] = aux/10; 
-        printf(" %.1f \n",mediaFinal[j]);
+        //printf(" %.1f \n",mediaFinal[j]);
       }
 
      //-----------------------------------------------------------------------//
@@ -70,22 +73,21 @@ void AlunoDestaque(char *nome1, char *nome2,int n, int m, float nota[][n],float 
 		}		
 	 }    
      }
-     
-     int destaque = 0;
-     /*printf("\n Média ordenada"); 
+     /*
+     printf("\n Média ordenada"); 
      for(i=0;i<m;i++){ 	  
-          //printf(" %.2f ",mediaFinal[i]);
+          printf(" %.2f ",mediaFinal[i]);
      }	
      printf(" ");*/
 
-     
+     int destaque = 0;
      for(i=0;i<m;i++){ 
  	 for(j=0;j<m;j++){
 		if(nota[i][j]>=5 && mediaFinal[i]>7){
 			if(i==0){
-			    printf("O aluno destaque é %s",nome1[6]);
+			    printf("O aluno destaque é %s",nomes[0].nome[4]);
 			    destaque++;
-                        }else if(i==1){printf("O aluno destaque é %s",nome1[6]); destaque++;}	
+                        }else if(i==1){printf("O aluno destaque é %s",nomes[0].nome[4]); destaque++;}	
 		}
          }
      }
@@ -100,12 +102,10 @@ void main(){
         int peso[n];
         float mediaFinal[m];
 	float nota[m][n];
+        struct nome nomes[m];
+		
+	nomes[0].nome[4] = 'L','u','i','z';
+	nomes[1].nome[4] = 'J','u','c','a';
 
-       
-	char nome1[6] = "João";
-	char nome2[6] = "Lucas";
-       
-        AlunoDestaque(nome1,nome2,n,m,nota,mediaFinal,peso);
+        AlunoDestaque(n,m,nomes,nota,mediaFinal,peso);
 }
-
-
