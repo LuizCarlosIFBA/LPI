@@ -23,12 +23,10 @@ void desvioPadrao(float *MedFinal,int m, float Media, float DPadrao){
         //não é a coisa mais aconselhável a fazer, porém está ok 
 	//na variável diz somo, mas não foi somente essa operação 
         //realizada, mesmo assim o cálculo está certo. 
-	soma = soma/(m-1);
-        //
-
-	DPadrao = sqrt(soma);
+	DPadrao = soma/(m-1);
+        	
         printf("A média aritmética é: %.1f \n",Media);
-	printf("O desvio padrão é: %.1f \n",pow(soma,2));
+	printf("O desvio padrão é: %.1f \n",sqrt(DPadrao));
 }
 
 void main(){
@@ -54,4 +52,5 @@ void main(){
 	desvioPadrao(MedFinal,m,Media,DPadrao);
 }
 
+// gcc -o main main.c -lm
 
