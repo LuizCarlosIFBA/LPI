@@ -3,10 +3,10 @@
 #include "stdlib.h"
 #include "time.h"
 #include <string.h>
-  
-        struct nome{
-		char nome[4];
-        };	
+
+struct nome{
+	char nome[4];
+};	
 	  
 void AlunoDestaque(int n, int m, struct nome *nomes, float nota[][n],float *mediaFinal,int *peso){
 	//Preenchendo o vetor peso 
