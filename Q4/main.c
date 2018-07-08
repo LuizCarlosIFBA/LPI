@@ -70,13 +70,13 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
      
      
      printf("Média não ordenada"); 
-     for(i=0;i<m;i++){ 	  
+     for(int i=0;i<m;i++){ 	  
           printf(" %.2f ",mediaFinal[i]);
      }   
      printf(" ");  
    
-     for(i=0;i<m;i++){ 
- 	 for(j=0;j<m;j++){
+     for(int i=0;i<m;i++){ 
+ 	 for(int j=0;j<m;j++){
    	 	aux = 0;
 		if(mediaFinal[i]<mediaFinal[j]){
 			aux = mediaFinal[j];
@@ -93,20 +93,21 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
      printf(" ");*/
       
      int destaque = 0;
-     for(i=0;i<m;i++){ 
- 	 for(j=0;j<m;j++){
+     for(int i=0;i<m;i++){ 
+ 	 for(int j=0;j<m;j++){
 		if(nota[i][j]>=5 && mediaFinal[i]>7){
 			if(i==0){
-			    printf("O aluno destaque é %s",nomes[0].nome[4]);
+			    printf("O aluno destaque é %i",alunos[i].nome[i]);
 			    destaque++;
-                        }else if(i==1){printf("O aluno destaque é %s",nomes[0].nome[4]); destaque++;}	
+                        }else if(i==1){printf("O aluno destaque é %i",alunos[i].nome[i]); destaque++;}	
 		}
          }
      }
      printf(destaque == 0?"Turma não tem aluno Destaque\n":" ");		
 
-     float Dpadrao;
-     desvioPadrao(MedFinal,m,Media,DPadrao);
+     float DPadrao = 0;
+     float Media = 0;
+     desvioPadrao(mediaFinal,m,Media,DPadrao);
 }
 void main(){
         int n = 0;
@@ -135,9 +136,8 @@ void main(){
                 scanf("%d",&peso[i]);
         }        
 
-	float mediaFinal[m];
-	float nota[m][n];
-        	
-     
+        float mediaFinal[m];
+ 	float nota[m][n];
+       
         AlunoDestaque(n,m,nota,mediaFinal,peso);
 }
