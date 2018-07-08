@@ -3,6 +3,32 @@
 #include "stdlib.h"
 #include "time.h"
 #include <string.h>
+
+void desvioPadrao(float *MedFinal,int m, float Media, float DPadrao){
+	float soma = 0;
+        float termo;
+        int i;
+	for(i=0;i<m;i++){
+		soma += MedFinal[i];
+		
+	}
+	Media = soma/m;
+       
+        soma = 0;
+        termo = 0;
+ 	for(i=0;i<m;i++){
+		termo = MedFinal[i]-Media;
+		soma += pow(termo,2);
+	}
+      
+        //não é a coisa mais aconselhável a fazer, porém está ok 
+	//na variável diz somo, mas não foi somente essa operação 
+        //realizada, mesmo assim o cálculo está certo. 
+	DPadrao = soma/(m-1);
+        	
+        printf("A média aritmética é: %.1f \n",Media);
+	printf("O desvio padrão é: %.1f \n",sqrt(DPadrao));
+}
   	
 	  
 void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
@@ -42,13 +68,13 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
      //-----------------------------------------------------------------------//
      //lógica para aluno destaque
      
-     /*
+     
      printf("Média não ordenada"); 
      for(i=0;i<m;i++){ 	  
           printf(" %.2f ",mediaFinal[i]);
      }   
-     printf(" ");*/   
-   /*
+     printf(" ");  
+   
      for(i=0;i<m;i++){ 
  	 for(j=0;j<m;j++){
    	 	aux = 0;
@@ -65,7 +91,7 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
           printf(" %.2f ",mediaFinal[i]);
      }	
      printf(" ");*/
-      /*
+      
      int destaque = 0;
      for(i=0;i<m;i++){ 
  	 for(j=0;j<m;j++){
@@ -78,8 +104,9 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
          }
      }
      printf(destaque == 0?"Turma não tem aluno Destaque\n":" ");		
-*/
- 
+
+     float Dpadrao;
+     desvioPadrao(MedFinal,m,Media,DPadrao);
 }
 void main(){
         int n = 0;
