@@ -63,8 +63,8 @@ void AlunoDestaque(int n, int m, struct nome *nomes, float nota[][n],float *medi
      }   
      printf(" ");*/   
    
-     for(i=0;i<m;i++){ 
- 	 for(j=0;j<m;j++){
+     for(int i=0;i<m;i++){ 
+ 	 for(int j=0;j<m;j++){
    	 	aux = 0;
 		if(mediaFinal[i]<mediaFinal[j]){
 			aux = mediaFinal[j];
@@ -81,8 +81,8 @@ void AlunoDestaque(int n, int m, struct nome *nomes, float nota[][n],float *medi
      printf(" ");*/
 
      int destaque = 0;
-     for(i=0;i<m;i++){ 
- 	 for(j=0;j<m;j++){
+     for(int i=0;i<m;i++){ 
+ 	 for(int j=0;j<m;j++){
 		if(nota[i][j]>=5 && mediaFinal[i]>7){
 			if(i==0){
 			    printf("O aluno destaque é %s",nomes[0].nome[4]);

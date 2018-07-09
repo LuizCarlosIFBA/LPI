@@ -25,10 +25,10 @@ void desvioPadrao(float *MedFinal,int m, float Media, float DPadrao){
 	//na variável diz somo, mas não foi somente essa operação 
         //realizada, mesmo assim o cálculo está certo. 
 	DPadrao = soma/(m-1);
-        	
+        DPadrao = sqrt(DPadrao);	
         printf("A média aritmética é: %.1f \n",Media);
-	printf("O desvio padrão é: %.1f \n",sqrt(DPadrao));
-}
+	printf("O desvio padrão é: %.1f \n",DPadrao);//Só vai existir se cadastrar mais de um aluno
+}						     //, caso contrário não emprimirá nenhum valor válido	
   	
 	  
 void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
@@ -40,41 +40,42 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
          Aluno alunos[m];
           
          for(int i=0; (i < m); i++){
-                printf("\nEscreva o nome do aluno(%i): ",i+1);
-                scanf("%i",alunos[i].nome);
-		setbuf(stdin, NULL);
 		for(int j=0;j<n;j++){
 			printf("\nEscreva %d º  nota: ",j+1);
    			scanf("%f",&nota[j][i]);
                         if(i % 10 == 0){
       				printf("\n");
         		} 
-	        }	
+	        }
+	        printf("\nEscreva o nome do aluno(%i): ",i+1);
+                scanf("%i",alunos[i].nome);
+		setbuf(stdin, NULL);	
         }
         //printf("\n \n");
        
        //Cálculo da média
-       int aux=0;
-       
+       int aux;
+
+       float auxMedia;        
        for(int j=0;j<m;j++){ 
  		for(int i=0;i<n;i++){
-   			aux+=nota[j][i]; 
+   			auxMedia+=nota[j][i]; 
 		}
     
-        mediaFinal[j] = aux/10; 
-        //printf(" %.1f \n",mediaFinal[j]);
+        mediaFinal[j] = auxMedia/10; 
+       // printf(" %.1f \n",mediaFinal[j]);
       }
 
      //-----------------------------------------------------------------------//
      //lógica para aluno destaque
      
-     
+     /*
      printf("Média não ordenada"); 
      for(int i=0;i<m;i++){ 	  
           printf(" %.2f ",mediaFinal[i]);
      }   
      printf(" ");  
-   
+     */
      for(int i=0;i<m;i++){ 
  	 for(int j=0;j<m;j++){
    	 	aux = 0;
@@ -94,7 +95,7 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
       
      int destaque = 0;
      for(int i=0;i<m;i++){ 
- 	 for(int j=0;j<m;j++){
+ 	 for(int j=0;j<n;j++){
 		if(nota[i][j]>=5 && mediaFinal[i]>7){
 			if(i==0){
 			    printf("O aluno destaque é %i",alunos[i].nome[i]);
