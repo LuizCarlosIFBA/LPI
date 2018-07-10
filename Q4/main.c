@@ -38,7 +38,16 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
  	 
 	 //'m' recebeu os valores de TAM
          Aluno alunos[m];
-          
+         
+        
+         for(int i= 0;i<m;i++){
+		printf("\nEscreva o nome do aluno(%i): ",i+1);
+                  setbuf(stdin, NULL);
+                 scanf("%[^\n]i",alunos[i].nome);
+		 setbuf(stdin, NULL);	
+         }
+	
+		 setbuf(stdin, NULL);         
          for(int i=0; (i < m); i++){
 		for(int j=0;j<n;j++){
 			printf("\nEscreva %d º  nota: ",j+1);
@@ -47,14 +56,16 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
       				printf("\n");
         		} 
 	        }
-	        printf("\nEscreva o nome do aluno(%i): ",i+1);
-                scanf("%i",alunos[i].nome);
-		setbuf(stdin, NULL);	
         }
         //printf("\n \n");
        
        //Cálculo da média
        int aux;
+
+       for(int i=0; i < n; i++){
+                printf("\nEscreva o peso %d º: ",i+1);
+                scanf("%d",&peso[i]);
+       }        
 
        float auxMedia;        
        for(int j=0;j<m;j++){ 
@@ -90,8 +101,8 @@ void AlunoDestaque(int n, int m,float nota[][n],float *mediaFinal,int *peso){
      printf("\n Média ordenada"); 
      for(i=0;i<m;i++){ 	  
           printf(" %.2f ",mediaFinal[i]);
-     }	
-     printf(" ");*/
+     }*/
+     printf("\n");
       
      int destaque = 0;
      for(int i=0;i<m;i++){ 
@@ -132,11 +143,6 @@ void main(){
 	}
         
         int peso[n];//5 posições
-	for(int i=0; i < n; i++){
-                printf("\nEscreva o peso %d º: ",i+1);
-                scanf("%d",&peso[i]);
-        }        
-
         float mediaFinal[m];
  	float nota[m][n];
        
