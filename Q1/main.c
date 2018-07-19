@@ -3,19 +3,16 @@
 #include "stdlib.h"
 #include "time.h"
 
-void CalcularMediaFinais(int n, int m, float nota[][n],float *mediaFinal,int *peso){
+void CalcularMediaFinais(int n, int m, float nota[][n],float *pMediaFinal,int *pPeso){
 	//Preenchendo o vetor peso 
-	int i,j; 
 	srand((unsigned)time(NULL));
-	for(i=0;i<n;i++){
-   		peso[i] = rand()%11;
+	for(int i=0;i<n;i++){
+   		pPeso[i] = rand()%11;
    		if(i % 10 == 0){
       			printf("\n");
         	} 	
          
-   		//printf(" %3d",peso[i]);
 	}
-        //printf("\n \n");
        
         //----------------------------------------------------------------------//
   
@@ -23,29 +20,27 @@ void CalcularMediaFinais(int n, int m, float nota[][n],float *mediaFinal,int *pe
 
         float aux = 0;    
 	srand(time(NULL));
-	for(j=0;j<m;j++){ 
- 		for(i=0;i<n;i++){
+	for(int j=0;j<m;j++){ 
+ 		for(int i=0;i<n;i++){
    			aux = 0+ 10.0*((float)(rand())/RAND_MAX);
                         nota[j][i] = aux;
                         if(i % 10 == 0){
       				printf("\n");
         		} 	
-   		//printf(" %.1f",nota[j][i]);
 		}    
         }
-        //printf("\n \n");
+
        //----------------------------------------------------------------------//
       
        //Cálculo da média
        aux=0;
        
-       for(j=0;j<m;j++){ 
- 		for(i=0;i<n;i++){
-   			aux+=nota[j][i]*peso[j]; 
+       for(int j=0;j<m;j++){ 
+ 		for(int i=0;i<n;i++){
+   			aux+=nota[j][i]*pPeso[j]; 
 		}
     
-        mediaFinal[j] = aux/10; 
-        //printf(" %.1f \n",mediaFinal[j]);
+        pMediaFinal[j] = aux/10; 
       }
 }
 
@@ -53,13 +48,15 @@ void main(){
         int m = 2;
  	int n = 4;	
        
-        
         int peso[n];
         float mediaFinal[m];
 	float nota[m][n];
-
-    
-        CalcularMediaFinais(n,m,nota,mediaFinal,peso);
+	
+	//Ponteiro peso, média e nota
+	int *pPeso = &peso[n]; 	
+	float *pMediaFinal = &mediaFinal[m];
+	    
+        CalcularMediaFinais(n,m,nota,pMediaFinal,pPeso);
         	
 }
 
