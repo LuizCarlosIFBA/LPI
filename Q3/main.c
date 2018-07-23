@@ -62,19 +62,33 @@ void AlunoDestaque(int *n, int *m, struct nome *nomes, float **nota,float *media
 		}		
 	 }    
      }
-
+	
+   
      int destaque = 0;
-     for(int i=0;i<*m;i++){ 
- 	 for(int j=0;j<*m;j++){
-		if(nota[i][j]>=5 && mediaFinal[i]>7){
-			if(i==0){
-			    printf("O aluno destaque é %s",nomes[0].nome[4]);
-			    destaque++;
-                        }else if(i==1){printf("O aluno destaque é %s",nomes[0].nome[4]); destaque++;}	
-		}
-         }
+     for(int j=0;j<*n;j++){
+         if(mediaFinal[*m]>=7){
+	     destaque = nota[*m][j]<=5?destaque+0:destaque+1;	
+	 }else printf("Não houve aluno destaque");
      }
-     printf(destaque == 0?"Turma não tem aluno Destaque\n":" ");		 
+    
+     if(destaque>0){
+	printf("Os alunos destaque são:");     
+	printf("%c",nomes[*m].nome[50]);
+     }
+
+     
+     for(int j=*m-1;j==0;j--){
+	destaque = 0;
+	if(mediaFinal[j]>=7 && mediaFinal[j]==mediaFinal[*m]){
+        	if(mediaFinal[*m]>=7){
+	     		destaque = nota[*m][j]<=5?destaque+0:destaque+1; 
+		}  	
+	}
+	
+        if(destaque>0){
+	    printf("%c",nomes[j].nome[50]);
+        }
+     }		 
 }
 
 void main(){
