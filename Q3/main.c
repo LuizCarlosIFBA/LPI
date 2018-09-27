@@ -8,11 +8,11 @@ struct nome{
 	char nome[4];
 };	
 	  
-void AlunoDestaque(int *n, int *m, struct nome *nomes, float **nota,float *mediaFinal,int *peso){
+void AlunoDestaque(int n, int m, struct nome *nomes, float **nota,float *mediaFinal,int *peso){
 	//Preenchendo o vetor peso 
 	int i,j; 
 	srand((unsigned)time(NULL));
-	for(i=0;i<*n;i++){
+	for(i=0;i<n;i++){
    		peso[i] = rand()%11;
    		if(i % 10 == 0){
       			//printf("\n");
@@ -26,8 +26,8 @@ void AlunoDestaque(int *n, int *m, struct nome *nomes, float **nota,float *media
 
         float aux = 0;    
 	srand(time(NULL));
-	for(j=0;j<*m;j++){ 
- 		for(i=0;i<*n;i++){
+	for(j=0;j<m;j++){ 
+ 		for(i=0;i<n;i++){
    			aux = 0+ 10.0*((float)(rand())/RAND_MAX);
                         nota[j][i] = aux;
                         if(i % 10 == 0){
@@ -41,8 +41,8 @@ void AlunoDestaque(int *n, int *m, struct nome *nomes, float **nota,float *media
        //Cálculo da média
        aux=0;
        
-       for(j=0;j<*m;j++){ 
- 		for(i=0;i<*n;i++){
+       for(j=0;j<n;j++){ 
+ 		for(i=0;i<n;i++){
    			aux+=nota[j][i]; 
 		}
     
@@ -52,8 +52,8 @@ void AlunoDestaque(int *n, int *m, struct nome *nomes, float **nota,float *media
      //-----------------------------------------------------------------------//
      //lógica para aluno destaque
      
-     for(int i=0;i<*m;i++){ 
- 	 for(int j=0;j<*m;j++){
+     for(int i=0;i<m;i++){ 
+ 	 for(int j=0;j<m;j++){
    	 	aux = 0;
 		if(mediaFinal[i]<mediaFinal[j]){
 			aux = mediaFinal[j];
@@ -65,23 +65,23 @@ void AlunoDestaque(int *n, int *m, struct nome *nomes, float **nota,float *media
 	
    
      int destaque = 0;
-     for(int j=0;j<*n;j++){
-         if(mediaFinal[*m]>=7){
-	     destaque = nota[*m][j]<=5?destaque+0:destaque+1;	
-	 }else printf("Não houve aluno destaque");
+     for(int j=0;j<n;j++){
+         if(mediaFinal[m]>=7){
+	     destaque = nota[m][j]<=5?destaque+0:destaque+1;	
+	 }
      }
-    
+		
      if(destaque>0){
 	printf("Os alunos destaque são:");     
-	printf("%c",nomes[*m].nome[50]);
-     }
+	printf("%c",nomes[m].nome[50]);
+     }else printf("Não houve aluno destaque\n");
 
      
-     for(int j=*m-1;j==0;j--){
+     for(int j=m-1;j==0;j--){
 	destaque = 0;
-	if(mediaFinal[j]>=7 && mediaFinal[j]==mediaFinal[*m]){
-        	if(mediaFinal[*m]>=7){
-	     		destaque = nota[*m][j]<=5?destaque+0:destaque+1; 
+	if(mediaFinal[j]>=7 && mediaFinal[j]==mediaFinal[m]){
+        	if(mediaFinal[m]>=7){
+	     		destaque = nota[m][j]<=5?destaque+0:destaque+1; 
 		}  	
 	}
 	
@@ -95,15 +95,9 @@ void main(){
         int m = 2;
  	int n = 2;
 	
-	//ponteiro para variáveis 
-	int *pM = &m; 
-	int *pN = &n;	
-	// -----------------------
-
-	
 	//vetores e matriz dinâmica 
-        int peso[*pN];
-        float mediaFinal[*pN];
+        int peso[n];
+        float mediaFinal[n];
 	float **nota;
 
 	//aloco vetor principal
@@ -115,8 +109,8 @@ void main(){
 	}
 	
 	//Ponteiro peso, média e nota
-	int *pPeso = &peso[*pN]; 	
-	float *pMediaFinal = &mediaFinal[*pM];
+	int *pPeso = &peso[n]; 	
+	float *pMediaFinal = &mediaFinal[m];
 	  
 
         struct nome nomes[m];
@@ -124,5 +118,5 @@ void main(){
 	nomes[0].nome[4] = 'L','u','i','z';
 	nomes[1].nome[4] = 'J','u','c','a';
 
-        AlunoDestaque(pN,pM,nomes,nota,pMediaFinal,peso);
+        AlunoDestaque(n,m,nomes,nota,pMediaFinal,peso);
 }
