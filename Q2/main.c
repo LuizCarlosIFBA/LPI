@@ -39,8 +39,6 @@ void main(){
 	float DPadrao = 0;
 		
 	//ponteiro para variáveis 
-	int *pM = &m; 
-	int *pAux = &aux;
 	float *pMedia = &Media;
 	float *pDPadrao = &DPadrao;
 	// -----------------------
@@ -52,9 +50,9 @@ void main(){
 	//------------------------
 
 	srand((unsigned)time(NULL));
-	for(int i=0;i<*pM;i++){
-   		*pAux = 0+ 10.0*((float)(rand())/RAND_MAX);
-                pMedFinal[i] = *pAux;
+	for(int i=0;i<m;i++){
+   		aux = 0+ 10.0*((float)(rand())/RAND_MAX);
+                pMedFinal[i] = aux;
                 //printf("%d º média final %.1f\n",i+1,MedFinal[i]);
    		if(i % 10 == 0){
       			printf("\n");
